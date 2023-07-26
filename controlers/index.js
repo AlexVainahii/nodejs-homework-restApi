@@ -1,16 +1,3 @@
-const {
-  getContacts,
-  getContactsById,
-  addContact,
-  deleteContact,
-  updateContactById,
-  updateStatusById,
-} = require("./contacs");
-module.exports = {
-  getContacts,
-  getContactsById,
-  addContact,
-  deleteContact,
-  updateContactById,
-  updateStatusById,
-};
+const apiCtrl = require("./api");
+const userCtrl = require("./users");
+module.exports = { apiCtrl, userCtrl };

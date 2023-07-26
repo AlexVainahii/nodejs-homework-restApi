@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
+const service = require("../service");
 const { schemas } = require("../schemas");
 
 const contactShema = new Schema(
@@ -10,12 +10,16 @@ const contactShema = new Schema(
     },
     email: {
       type: String,
+      match: [
+        schemas.emailRegexp,
+        "Invalid email format. Please fill a valid email ",
+      ],
       required: [true, "Set email for contact"],
     },
     phone: {
       type: String,
       match: [
-        schemas.dataRegexp,
+        schemas.phoneRegexp,
         "Invalid phone number format. Please fill a valid phone number (000) 000-0000.",
       ],
       required: [true, "Set phone for contact"],
@@ -24,10 +28,16 @@ const contactShema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
-contactShema.post("save", handleMongooseError);
+
+contactShema.post("save", service.handleMongooseError);
 
 const Contact = model("contact", contactShema);
 
