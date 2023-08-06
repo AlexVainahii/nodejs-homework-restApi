@@ -5,6 +5,7 @@ const { registerSchema } = require("./registerSchema");
 const { loginSchema } = require("./loginSchema");
 const { updateSubscription } = require("./updateSubscription");
 const { phoneRegexp, emailRegexp } = require("./regexp");
+const emailSchema = require("./emailSchema");
 
 const schemas = {
   contactSchema,
@@ -15,5 +16,6 @@ const schemas = {
   updateSubscription,
   phoneRegexp,
   emailRegexp,
+  emailSchema,
 };
 module.exports = { schemas };
