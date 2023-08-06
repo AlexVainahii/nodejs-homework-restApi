@@ -5,10 +5,8 @@ const loginSchema = Joi.object({
     .min(4)
     .required()
     .messages({ "any.required": "missing required password field" }),
-  email: Joi.string()
-    .trim()
-    .pattern(emailRegexp)
-    .required()
-    .messages({ "any.required": "missing required email field" }),
+  email: Joi.string().trim().pattern(emailRegexp).required().messages({
+    "any.required": "missing required email field",
+  }),
 });
 module.exports = { loginSchema };
